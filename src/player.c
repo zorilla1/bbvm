@@ -8,36 +8,28 @@
 
 extern int bytebeat(int t, char* code);
 
-void _pei386_runtime_relocator()
-{
-	return;
-}
-
-void __chkstk_ms()
-{
-	return;
-}
-
-void __main()
+void main()
 {
 	char code[65536];
+	printf("WAVE_FORMAT_PCM = %d\n", WAVE_FORMAT_PCM);
+	printf("WAVE_MAPPER = %d\n", WAVE_MAPPER);
+	printf("CALLBACK_NULL = %d\n", CALLBACK_NULL);
+	printf("sizeof(WAVEHDR) = %d\n", sizeof(WAVEHDR));
 	int i = 0;
-	FILE* f = fopen("song.bb", "r");
-	while (!feof(f))
+	while (!feof(stdin))
 	{
-		fread(code + i, 1, 1, f);
+		fread(code + i, 1, 1, stdin);
 		i++;
 	}
-	fclose(f);
-	
+
 	char* buffer = malloc(SAMPLE_COUNT);
 	for (int i = 0; i < SAMPLE_COUNT; i++)
 		buffer[i] = bytebeat(i, code);
 
-	HWAVEOUT hWaveOut;
 	WAVEFORMATEX wfx = { WAVE_FORMAT_PCM, 1, SAMPLE_RATE, SAMPLE_RATE, 1, 8, 0 };
 	WAVEHDR header = { buffer, SAMPLE_COUNT, 0, 0, 0, 0, 0, 0 };	
-
+	HWAVEOUT hWaveOut;
+	
 	waveOutOpen(&hWaveOut, WAVE_MAPPER, &wfx, 0, 0, CALLBACK_NULL);
 	waveOutPrepareHeader(hWaveOut, &header, sizeof(WAVEHDR));
 	waveOutWrite(hWaveOut, &header, sizeof(WAVEHDR));

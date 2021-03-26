@@ -1,9 +1,5 @@
 Run
 
-	compiler.exe test.txt > song.bb
+	cat test.txt | compiler | player
 
-to compile the RPN bytebeat song in test.txt. Play the song with
-
-	bb.exe
-
-Note that if there are any errors in your RPN, bb.exe will most likely crash.
+Note that if there are any errors in your RPN, player.exe will most likely crash.

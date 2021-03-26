@@ -1,34 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char** argv)
 {
-	FILE* f_in = fopen(argv[1], "r");
-	if (!f_in)
+	char* buffer = malloc(65536);
+	int i = 0;
+	while (!feof(stdin))
 	{
-		printf("Unable to open %s. Exiting.\n", argv[1]);
-		exit(1);
+		fread(buffer + i, 1, 1, stdin);
+		i++;
 	}
-	
-	fseek(f_in, 0L, SEEK_END);
-	long size = ftell(f_in);
-	fseek(f_in, 0L, SEEK_SET);
-	char* buffer = malloc(size);
-	
-	if (!buffer)
-	{
-		printf("Unable to allocate memory. Exiting.\n");
-		exit(1);
-	}
-	
-	if (fread(buffer, size, 1, f_in) != 1)
-	{
-		printf("Unable to read %s. Exiting.\n", argv[1]);
-		free(buffer);
-		exit(1);
-	}
-	buffer[size] = 0;
-	
+	buffer[i] = 0;
 	char* token = strtok(buffer, "\r\n\t\v ");
 	while (token != NULL)
 	{
@@ -104,4 +87,5 @@ int main(int argc, char** argv)
 		token = strtok(NULL, "\r\n\t\v ");
 	}
 	printf("%c", (48 << 1) | 1);
+	free(buffer);
 }

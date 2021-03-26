@@ -1,9 +1,9 @@
 all:
 	gcc compiler.c -o compiler.exe
-	nasm bb.asm -f win32 -o bbs.o
-	gcc -m32 -c bb.c -o bbc.o
-	gcc -m32 -o bb.exe bbs.o bbc.o -lwinmm -nostartfiles -e ___main
-	crinkler bbs.o bbc.o ..\lib\kernel32.Lib ..\lib\WinMM.lib ..\lib\User32.lib /ENTRY:__main
+	nasm bb.asm -f win32 -o bb.o
+	nasm start.asm -f win32 -o start.o
+	gcc player.c bb.o -lwinmm -o player.exe
+	crinkler bb.o start.o ..\lib\kernel32.Lib ..\lib\WinMM.lib /ENTRY:start /OUT:bb.exe /UNSAFEIMPORT /NODEFAULTLIB /TINYHEADER
 	
 clean:
 	rm *.o
