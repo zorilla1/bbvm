@@ -46,12 +46,9 @@ int main(int argc, char** argv)
 	
 	while (!feof(stdin))
 	{
-		fread(&c, 1, 1, stdin);
-		if (c == 't')
-		{
-			printf("t ");
-		}
-		else if (c >= '0' && c <= '9')
+		if (fread(&c, 1, 1, stdin) != 1)
+			break;
+		if (c >= '0' && c <= '9')
 		{
 			int i = 0;
 			while (c >= '0' && c <= '9' && !feof(stdin))
@@ -63,8 +60,12 @@ int main(int argc, char** argv)
 			token[i] = 0;
 			printf("%s ", token);
 		}
-		
-		if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '&' || c == '^' || c == '|')
+
+		if (c == 't')
+		{
+			printf("t ");
+		}
+		else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '&' || c == '^' || c == '|')
 		{
 			while (sp >= 0 && p(os[sp]) > p(c) && os[sp] != '(')
 				printf("%c ", os[sp--]);
@@ -123,6 +124,7 @@ int main(int argc, char** argv)
 			if (os[sp] == '(') sp--;
 		}
 	}
+	
 	while (sp >= 0)
 		printf("%c ", os[sp--]);
 	
