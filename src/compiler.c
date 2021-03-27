@@ -51,23 +51,23 @@ int main(int argc, char** argv)
 		{
 			printf("%c", (25 << 1) | 1);
 		}
-		else if (strcmp(token, "<<") == 0)
+		else if (strcmp(token, "<") == 0)
 		{
 			printf("%c", (29 << 1) | 1);
 		}
-		else if (strcmp(token, ">>") == 0)
+		else if (strcmp(token, ">") == 0)
 		{
 			printf("%c", (32 << 1) | 1);
 		}
-		else if (strcmp(token, "==") == 0)
+		else if (strcmp(token, "E") == 0)
 		{
 			printf("%c", (35 << 1) | 1);
 		}
-		else if (strcmp(token, "<=") == 0)
+		else if (strcmp(token, "L") == 0)
 		{
 			printf("%c", (36 << 1) | 1);
 		}
-		else if (strcmp(token, ">=") == 0)
+		else if (strcmp(token, "G") == 0)
 		{
 			printf("%c", (37 << 1) | 1);
 		}
