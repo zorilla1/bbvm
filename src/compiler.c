@@ -8,8 +8,8 @@ int main(int argc, char** argv)
 	int i = 0;
 	while (!feof(stdin))
 	{
-		fread(buffer + i, 1, 1, stdin);
-		i++;
+		if (fread(buffer + i, 1, 1, stdin) == 1)
+			i++;
 	}
 	buffer[i] = 0;
 	char* token = strtok(buffer, "\r\n\t\v ");
@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 		{
 			printf("%c", (37 << 1) | 1);
 		}
-		else
+		else if (strlen(token) > 0)
 		{
 			int n = atoi(token);
 			if (n >= 0 && n <= 127)
