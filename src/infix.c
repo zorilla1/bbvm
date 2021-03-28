@@ -178,7 +178,7 @@ int main(int argc, char** argv)
 	}
 	
 	while (sp >= 0)
-		printf("%c ", os[sp--]);
+		printf("%s ", symbol(os[sp--]));
 	
 	return 0;
 }
