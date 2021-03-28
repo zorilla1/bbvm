@@ -1,5 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+char* symbol(char c)
+{
+	switch (c)
+	{
+		case '&':
+			return "&";
+		case '^':
+			return "^";
+		case '|':
+			return "|";
+		case 'E':
+			return "==";
+		case 'G':
+			return ">=";
+		case 'L':
+			return "<=";
+		case '<':
+			return "<<";
+		case '>':
+			return ">>";
+		case '+':
+			return "+";
+		case '-':
+			return "-";
+		case '*':
+			return "*";
+		case '/':
+			return "/";
+		case '%':
+			return "%";
+	}
+}
 
 int p(char c)
 {
@@ -68,7 +102,7 @@ int main(int argc, char** argv)
 		else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '&' || c == '^' || c == '|')
 		{
 			while (sp >= 0 && p(os[sp]) > p(c) && os[sp] != '(')
-				printf("%c ", os[sp--]);
+				printf("%s ", symbol(os[sp--]));
 			os[++sp] = c;
 		}
         else if (c == '<')
@@ -77,13 +111,13 @@ int main(int argc, char** argv)
 			if (c == '<')
 			{
 				while (sp >= 0 && p(os[sp]) > p('<') && os[sp] != '(')
-					printf("%c ", os[sp--]);
+					printf("%s ", symbol(os[sp--]));
 				os[++sp] = '<';
 			}
 			else if (c == '=')
 			{
 				while (sp >= 0 && p(os[sp]) > p('L') && os[sp] != '(')
-					printf("%c ", os[sp--]);
+					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'L';
 			}
 			else
@@ -98,13 +132,13 @@ int main(int argc, char** argv)
 			if (c == '>')
 			{
 				while (sp >= 0 && p(os[sp]) > p('>') && os[sp] != '(')
-					printf("%c ", os[sp--]);
+					printf("%s ", symbol(os[sp--]));
 				os[++sp] = '>';
 			}
 			else if (c == '=')
 			{
 				while (sp >= 0 && p(os[sp]) > p('G') && os[sp] != '(')
-					printf("%c ", os[sp--]);
+					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'G';
 			}
 			else
@@ -119,7 +153,7 @@ int main(int argc, char** argv)
 			if (c == '=')
 			{
 				while (sp >= 0 && p(os[sp]) > p('E') && os[sp] != '(')
-					printf("%c ", os[sp--]);
+					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'E';
 			}
 			else
@@ -134,7 +168,7 @@ int main(int argc, char** argv)
 		else if (c == ')')
 		{
 			while (sp >= 0 && os[sp] != '(')
-				printf("%c ", os[sp--]);
+				printf("%s ", symbol(os[sp--]));
 			if (os[sp] == '(') sp--;
 		}
 		else if (!isspace(c))

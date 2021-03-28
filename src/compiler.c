@@ -67,27 +67,27 @@ int main(int argc, char** argv)
 			printf("%c", (26 << 1) | 1);
 			depth -= 1;			
 		}
-		else if (strcmp(token, "<") == 0)
+		else if (strcmp(token, "<<") == 0)
 		{
 			printf("%c", (30 << 1) | 1);
 			depth -= 1;			
 		}
-		else if (strcmp(token, ">") == 0)
+		else if (strcmp(token, ">>") == 0)
 		{
 			printf("%c", (33 << 1) | 1);
 			depth -= 1;
 		}
-		else if (strcmp(token, "E") == 0)
+		else if (strcmp(token, "==") == 0)
 		{
 			printf("%c", (36 << 1) | 1);
 			depth -= 1;			
 		}
-		else if (strcmp(token, "L") == 0)
+		else if (strcmp(token, "<=") == 0)
 		{
 			printf("%c", (38 << 1) | 1);
 			depth -= 1;			
 		}
-		else if (strcmp(token, "G") == 0)
+		else if (strcmp(token, ">=") == 0)
 		{
 			printf("%c", (37 << 1) | 1);
 			depth -= 1;				
