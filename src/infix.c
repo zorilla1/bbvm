@@ -86,6 +86,11 @@ int main(int argc, char** argv)
 					printf("%c ", os[sp--]);
 				os[++sp] = 'L';
 			}
+			else
+			{
+				fprintf(stderr, "Malformed expression (< followed by invalid char)\n");
+			}
+
 		}
         else if (c == '>')
 		{
@@ -102,6 +107,11 @@ int main(int argc, char** argv)
 					printf("%c ", os[sp--]);
 				os[++sp] = 'G';
 			}
+			else
+			{
+				fprintf(stderr, "Malformed expression (> followed by invalid char)\n");
+			}
+			
 		}
         else if (c == '=')
 		{
@@ -111,6 +121,10 @@ int main(int argc, char** argv)
 				while (sp >= 0 && p(os[sp]) > p('E') && os[sp] != '(')
 					printf("%c ", os[sp--]);
 				os[++sp] = 'E';
+			}
+			else
+			{
+				fprintf(stderr, "Malformed expression (= not followed by =)\n");
 			}
 		}
 		else if (c == '(')
@@ -122,6 +136,10 @@ int main(int argc, char** argv)
 			while (sp >= 0 && os[sp] != '(')
 				printf("%c ", os[sp--]);
 			if (os[sp] == '(') sp--;
+		}
+		else if (!isspace(c))
+		{
+			fprintf(stderr, "WARNING: Unrecognized character \"%c\"\n", c);
 		}
 	}
 	
