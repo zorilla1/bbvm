@@ -42,49 +42,50 @@ inst:   ; t (opcode 0)
         xor eax, ecx
         ret
 
-        ; | (&,+) (opcode 12)
-        and eax, ecx
+        ; | (opcode 12)
+        or eax, ecx
+		ret
 
-        ; + (neg, -) (opcode 14)
+        ; + (neg, -) (opcode 15)
         neg ecx
 
-        ; - (opcode 16)
+        ; - (opcode 17)
         sub eax, ecx
         ret
 
-        ; * (opcode 19)
+        ; * (opcode 20)
         mul ecx
         ret
 
-        ; / (opcode 22)
+        ; / (opcode 23)
         div ecx
         ret
 
-        ; % (opcode 25)
+        ; % (opcode 26)
         div ecx
         xchg eax, edx
         ret
 
-        ; << (opcode 29)
+        ; << (opcode 30)
         shl eax, cl
         ret
         
-        ; >> (opcode 32)
+        ; >> (opcode 33)
         shr eax, cl
         ret
 
-        ; == (opcode 35)
+        ; == (opcode 36)
         stc
 
-        ; <= (opcode 36)
+        ; <= (opcode 37)
         cmc
         
-        ; >= (opcode 37)
+        ; >= (opcode 38)
         setbe dl
         xchg eax, edx
         ret
         
-        ; push imm32 (opcode 42)
+        ; push imm32 (opcode 43)
         pop edx
         push eax
         push ecx
@@ -92,7 +93,7 @@ inst:   ; t (opcode 0)
         lodsd
         ret
         
-        ; return (opcode 48)
+        ; return (opcode 49)
         pop edx
         xchg eax, ebx
 		xchg eax, ecx

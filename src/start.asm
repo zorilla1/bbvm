@@ -59,8 +59,7 @@ wavHdr:			dd buffer, SAMPLE_COUNT, 0, 0, 0, 0, 0, 0
 wavFormatEx: 	dw WAVE_FORMAT_PCM, 1
                 dd SAMPLE_RATE, SAMPLE_RATE
 				dw 1, 8, 0
-bytecode:		db 0x01, 0x14, 0x41, 0x54, 0x0D, 0x01, 0x27, 0x61
-
+bytecode:		incbin 'song.bb'
 section .bss
 
 hWaveOut:	resd 1
