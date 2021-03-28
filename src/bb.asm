@@ -77,10 +77,10 @@ inst:   ; t (opcode 0)
         ; == (opcode 36)
         stc
 
-        ; <= (opcode 37)
+        ; >= (opcode 37)
         cmc
         
-        ; >= (opcode 38)
+        ; <= (opcode 38)
         setbe dl
         xchg eax, edx
         ret

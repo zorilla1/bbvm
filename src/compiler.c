@@ -84,12 +84,12 @@ int main(int argc, char** argv)
 		}
 		else if (strcmp(token, "L") == 0)
 		{
-			printf("%c", (37 << 1) | 1);
+			printf("%c", (38 << 1) | 1);
 			depth -= 1;			
 		}
 		else if (strcmp(token, "G") == 0)
 		{
-			printf("%c", (38 << 1) | 1);
+			printf("%c", (37 << 1) | 1);
 			depth -= 1;				
 		}
 		else if (strlen(token) > 0)
