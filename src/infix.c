@@ -101,7 +101,7 @@ int main(int argc, char** argv)
 		}
 		else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '%' || c == '&' || c == '^' || c == '|')
 		{
-			while (sp >= 0 && p(os[sp]) > p(c) && os[sp] != '(')
+			while (sp >= 0 && p(os[sp]) >= p(c) && os[sp] != '(')
 				printf("%s ", symbol(os[sp--]));
 			os[++sp] = c;
 		}
@@ -110,13 +110,13 @@ int main(int argc, char** argv)
 			fread(&c, 1, 1, stdin);
 			if (c == '<')
 			{
-				while (sp >= 0 && p(os[sp]) > p('<') && os[sp] != '(')
+				while (sp >= 0 && p(os[sp]) >= p('<') && os[sp] != '(')
 					printf("%s ", symbol(os[sp--]));
 				os[++sp] = '<';
 			}
 			else if (c == '=')
 			{
-				while (sp >= 0 && p(os[sp]) > p('L') && os[sp] != '(')
+				while (sp >= 0 && p(os[sp]) >= p('L') && os[sp] != '(')
 					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'L';
 			}
@@ -131,13 +131,13 @@ int main(int argc, char** argv)
 			fread(&c, 1, 1, stdin);
 			if (c == '>')
 			{
-				while (sp >= 0 && p(os[sp]) > p('>') && os[sp] != '(')
+				while (sp >= 0 && p(os[sp]) >= p('>') && os[sp] != '(')
 					printf("%s ", symbol(os[sp--]));
 				os[++sp] = '>';
 			}
 			else if (c == '=')
 			{
-				while (sp >= 0 && p(os[sp]) > p('G') && os[sp] != '(')
+				while (sp >= 0 && p(os[sp]) >= p('G') && os[sp] != '(')
 					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'G';
 			}
@@ -152,7 +152,7 @@ int main(int argc, char** argv)
 			fread(&c, 1, 1, stdin);
 			if (c == '=')
 			{
-				while (sp >= 0 && p(os[sp]) > p('E') && os[sp] != '(')
+				while (sp >= 0 && p(os[sp]) >= p('E') && os[sp] != '(')
 					printf("%s ", symbol(os[sp--]));
 				os[++sp] = 'E';
 			}
