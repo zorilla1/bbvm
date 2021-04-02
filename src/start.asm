@@ -5,8 +5,7 @@ bits 32
 %define CALLBACK_NULL 0
 
 %define SAMPLE_RATE 44100
-%define PLAY_TIME 240
-%define SAMPLE_COUNT SAMPLE_RATE * PLAY_TIME
+%define SAMPLE_COUNT 3940352
 
 extern _bytebeat
 extern _waveOutOpen@24
@@ -48,7 +47,7 @@ L:	push bytecode
 	call _waveOutWrite@12
 	add esp, 12
 
-	push PLAY_TIME * 1000
+	push SAMPLE_COUNT * 1000 / 44100
 	call _Sleep@4
 	add esp, 4
 	ret
